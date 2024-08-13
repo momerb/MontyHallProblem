@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Monty Hall Problem</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<body>
+    <div class="center-block">
+
+        <h1>The Monty Hall Problem: Practical Simulation</h1>
+
+        <form action="/" method="POST">
+
+            <label for="trials" class="description">You can practically test the result to understand the Monty Hall's probability problem.</label>
+
+            <br><br>
+
+            <input type="text" name="trials" id="trials" class="big-input" placeholder="Enter number of trials" required>
+
+            <button type="submit" class="simulate-button">Simulate</button>
+
+        </form>
+
+        {% if switch_wins or stay_wins %}
+
+            <div class="result-section">
+
+                <table>
+
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Number of wins</th>
+                        <th>Win rate (%)</th>
+                        <th>Expected win rate (%)</th>
+                        <th>Number of games played</th>
+                    </tr>
+
+                    <tr>
+                        <td>Switch</td>
+                        <td>{{ switch_wins }}</td>
+                        <td>{{ switch_win_rate }}</td>
+                        <td>66.7</td>
+                        <td>{{ trials }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Stay</td>
+                        <td>{{ stay_wins }}</td>
+                        <td>{{ stay_win_rate }}</td>
+                        <td>33.3</td>
+                        <td>{{ trials }}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+        {% endif %}
+
+        {% if error %}
+
+            <div class="error-message">{{ error }}</div>
+
+        {% endif %}
+
+        <div class="note-text">
+
+            <p><i>Note: This website is responsive for both mobile and desktop.</i></p>
+
+        </div>
+
+    </div>
+</body>
+</html>
