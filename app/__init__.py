@@ -4,7 +4,7 @@ import random
 
 app = Flask(__name__, static_url_path='/static/css')
 
-doors = [1, 2, 3]
+doors: list[int] = [1, 2, 3]
 
 @app.route('/', methods=["GET", "POST"])
 
@@ -18,20 +18,20 @@ def monty_hall():
         if trials <= 0 or trials > 1000000:
             return render_template("index.html", error="Number of trials should be in between 1 - 1,000,000!")
 
-        switch_wins = 0
-        stay_wins = 0
+        switch_wins: int = 0
+        stay_wins: int = 0
 
         for _ in range(trials):
-            car = random.choice(doors)
-            choice = random.choice(doors)
+            car: int = random.choice(doors)
+            choice: int = random.choice(doors)
 
             if car == choice:
                 stay_wins += 1
             else:
                 switch_wins += 1
         
-            switch_win_rate = round(switch_wins / trials * 100, 2)
-            stay_win_rate = round(stay_wins / trials * 100, 2)
+            switch_win_rate: int = round(switch_wins / trials * 100, 2)
+            stay_win_rate: int = round(stay_wins / trials * 100, 2)
 
         return render_template("index.html", switch_wins=switch_wins, stay_wins=stay_wins, trials=trials, switch_win_rate=switch_win_rate, stay_win_rate=stay_win_rate)
 
