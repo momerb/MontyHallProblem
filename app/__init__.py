@@ -13,10 +13,12 @@ def monty_hall():
         try:
             trials = int(request.form.get("trials"))
         except:
-            return render_template("index.html", error="Number of trials should be an integer")
+            return render_template("index.html", 
+                                   error="Number of trials should be an integer")
 
         if trials <= 0 or trials > 1000000:
-            return render_template("index.html", error="Number of trials should be in between 1 - 1,000,000!")
+            return render_template("index.html", 
+                                   error="Number of trials should be in between 1 - 1,000,000!")
 
         switch_wins: int = 0
         stay_wins: int = 0
@@ -33,6 +35,11 @@ def monty_hall():
             switch_win_rate: int = round(switch_wins / trials * 100, 2)
             stay_win_rate: int = round(stay_wins / trials * 100, 2)
 
-        return render_template("index.html", switch_wins=switch_wins, stay_wins=stay_wins, trials=trials, switch_win_rate=switch_win_rate, stay_win_rate=stay_win_rate)
+        return render_template("index.html", 
+                               switch_wins=switch_wins, 
+                               stay_wins=stay_wins, 
+                               trials=trials, 
+                               switch_win_rate=switch_win_rate, 
+                               stay_win_rate=stay_win_rate)
 
     return render_template("index.html")
